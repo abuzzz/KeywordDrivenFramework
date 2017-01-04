@@ -24,7 +24,7 @@ public class Browsers {
 	 * @return driver Object
 	 */
 
-	static Logger logger = LogManager.getLogger(Browsers.class);
+	static Logger log = LogManager.getLogger(Browsers.class);
 
 	public static WebDriver getBrowser(String browser) {
 		String path = System.getProperty("user.dir");
@@ -37,12 +37,12 @@ public class Browsers {
 
 			DRIVER = new FirefoxDriver(profile);
 			DRIVER.manage().timeouts().implicitlyWait(10, TimeUnit.MICROSECONDS);
-			logger.info(browser + " instance initializing...");
+			log.info(browser + " instance initializing...");
 			DRIVER.manage().window().maximize();
-			logger.info(browser + " browser launched successfully.");
-			logger.info("Opening... " + PropertiesReader.readProperty("URL"));
+			log.info(browser + " browser launched successfully.");
+			log.info("Opening... " + PropertiesReader.readProperty("URL"));
 			DRIVER.get(PropertiesReader.readProperty("URL"));
-			logger.info("URL opens up. ");
+			log.info("URL opens up. ");
 
 		} else if (browser.equalsIgnoreCase("Chrome")) {
 
@@ -54,12 +54,12 @@ public class Browsers {
 			System.setProperty("webdriver.chrome.driver", path + PropertiesReader.readProperty("chrome_driver"));
 			DRIVER = new ChromeDriver();
 			DRIVER.manage().timeouts().implicitlyWait(10, TimeUnit.MICROSECONDS);
-			logger.info(browser + " instance initializing...");
+			log.info(browser + " instance initializing...");
 			DRIVER.manage().window().maximize();
-			logger.info(browser + " browser launched successfully.");
-			logger.info("Opening... " + PropertiesReader.readProperty("URL"));
+			log.info(browser + " browser launched successfully.");
+			log.info("Opening... " + PropertiesReader.readProperty("URL"));
 			DRIVER.get(PropertiesReader.readProperty("URL"));
-			logger.info("URL opens up. ");
+			log.info("URL opens up. ");
 
 		} else if (browser.equalsIgnoreCase("IE")) {
 
@@ -72,12 +72,12 @@ public class Browsers {
 
 			System.setProperty("webdriver.ie.driver", path + PropertiesReader.readProperty("ie_driver"));
 			DRIVER = new InternetExplorerDriver();
-			logger.info(browser + " instance initializing...");
+			log.info(browser + " instance initializing...");
 			DRIVER.manage().window().maximize();
-			logger.info(browser + " browser launched successfully.");
-			logger.info("Opening... " + PropertiesReader.readProperty("URL"));
+			log.info(browser + " browser launched successfully.");
+			log.info("Opening... " + PropertiesReader.readProperty("URL"));
 			DRIVER.get(PropertiesReader.readProperty("URL"));
-			logger.info("URL opens up. ");
+			log.info("URL opens up. ");
 
 		}
 		return DRIVER;

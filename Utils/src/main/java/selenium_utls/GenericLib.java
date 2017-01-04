@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -212,7 +213,7 @@ public class GenericLib extends Browsers {
 		}
 	}
 
-	// Drag and dop any webElement
+	// Drag and drop any webElement
 	public static void dragAndDropWebElement(WebElement source, WebElement target, String message) {
 		try {
 
@@ -227,7 +228,7 @@ public class GenericLib extends Browsers {
 		}
 	}
 
-	// Click and hold any webelement
+	// Click and hold any web element
 	public static void clickAndHoldWebElement(WebElement element, String message) {
 		try {
 
@@ -257,4 +258,25 @@ public class GenericLib extends Browsers {
 		}
 	}
 
+	// Accept Alert Pop up
+	public static void acceptAlert(String message) {
+		try {
+			log.info("Accept" + message);
+			Alert alt = DRIVER.switchTo().alert();
+			alt.accept();
+		} catch (Exception e) {
+			log.info(e.getMessage());
+		}
+	}
+
+	// Dismiss Alert Pop up
+	public static void dismissAlert(String message) {
+		try {
+			log.info("Dismiss" + message);
+			Alert alt = DRIVER.switchTo().alert();
+			alt.dismiss();
+		} catch (Exception e) {
+			log.info(e.getMessage());
+		}
+	}
 }
