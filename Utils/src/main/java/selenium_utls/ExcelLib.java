@@ -9,17 +9,22 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelLib {
 
-	static String filePath = System.getProperty(("user.dir") + "\\Resources\\TestData.xls");
-/**
- * 
- * @param sheetName
- * @param rowNum
- * @param cellNum
- * @return
- */
+	static String filePath = System.getProperty("user.dir") + PropertiesReader.readProperty("XLS_file");
+
+	/**
+	 * 
+	 * @param sheetName
+	 * @param rowNum
+	 * @param cellNum
+	 * @return
+	 */
 	public static String getData(String sheetName, int rowNum, int cellNum) {
 
 		FileInputStream fileInput = null;
