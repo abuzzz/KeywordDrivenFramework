@@ -33,12 +33,12 @@ public class RobotLib {
 
 			robot.keyPress(KeyEvent.VK_ALT);
 			robot.keyPress(KeyEvent.VK_S);
-			GenericLib.impliciytlyWait(10, "10 seconds");
+			//GenericLib.impliciytlyWait(10, "10 seconds");
 
 			robot.keyRelease(KeyEvent.VK_S);
 			robot.keyRelease(KeyEvent.VK_ALT);
 
-			GenericLib.impliciytlyWait(10, "10 seconds");
+			//GenericLib.impliciytlyWait(10, "10 seconds");
 			robot.keyPress(KeyEvent.VK_ENTER);
 			robot.keyRelease(KeyEvent.VK_ENTER);
 

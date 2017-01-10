@@ -26,7 +26,7 @@ public class Login extends baseClass {
 
 		GenericLib.clickOnElement(Elements.getWebElementByXpath(Xpaths.signin), "Element got clicked");
 
-		GenericLib.impliciytlyWait(10, "10 second");
+		//GenericLib.impliciytlyWait(10, "10 second");
 
 	}
 
