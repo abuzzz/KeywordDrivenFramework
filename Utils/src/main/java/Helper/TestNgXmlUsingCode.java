@@ -23,9 +23,10 @@ public class TestNgXmlUsingCode{
  
         XmlSuite suite = new XmlSuite();
         suite.setName("ProgramSuite");
- 
+        
         XmlTest test = new XmlTest(suite);
         test.setName("ProgramTest");
+       
  
         XmlClass class1 = new XmlClass("Helper.Test_custTestNG");
         classes.add(class1);
