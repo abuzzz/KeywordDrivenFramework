@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GenericLib extends Browsers {
+public class GenericLib extends BaseClass {
 
 	static Logger log = LogManager.getLogger(GenericLib.class);
 
@@ -103,7 +103,7 @@ public class GenericLib extends Browsers {
 
 		try {
 			log.info("waiting for" + message);
-			DRIVER.manage().timeouts().implicitlyWait(timeDuration, TimeUnit.SECONDS);
+			BaseClass.getDriver().manage().timeouts().implicitlyWait(timeDuration, TimeUnit.SECONDS);
 
 		} catch (Exception e) {
 			log.info(e.getMessage());
@@ -116,7 +116,7 @@ public class GenericLib extends Browsers {
 		try {
 			log.info("waiting for" + message);
 
-			DRIVER.manage().timeouts().pageLoadTimeout(timeDuration, TimeUnit.SECONDS);
+			BaseClass.getDriver().manage().timeouts().pageLoadTimeout(timeDuration, TimeUnit.SECONDS);
 
 		} catch (Exception e) {
 			log.info(e.getMessage());
@@ -130,7 +130,7 @@ public class GenericLib extends Browsers {
 
 			log.info("waiting for" + message);
 
-			DRIVER.manage().timeouts().setScriptTimeout(timeDuration, TimeUnit.SECONDS);
+			BaseClass.getDriver().manage().timeouts().setScriptTimeout(timeDuration, TimeUnit.SECONDS);
 
 		} catch (Exception e) {
 			log.info(e.getMessage());
@@ -143,7 +143,7 @@ public class GenericLib extends Browsers {
 		try {
 			log.info("waiting for" + message);
 
-			WebDriverWait wait = new WebDriverWait(DRIVER, timeDuration);
+			WebDriverWait wait = new WebDriverWait(BaseClass.getDriver(), timeDuration);
 
 			wait.until(ExpectedConditions.visibilityOf(element));
 
@@ -174,7 +174,7 @@ public class GenericLib extends Browsers {
 
 			log.info("Move to " + message);
 
-			Actions act = new Actions(DRIVER);
+			Actions act = new Actions(BaseClass.getDriver());
 
 			act.moveToElement(element).build().perform();
 
@@ -189,7 +189,7 @@ public class GenericLib extends Browsers {
 		try {
 
 			log.info("contextClick on" + message);
-			Actions act = new Actions(DRIVER);
+			Actions act = new Actions(BaseClass.getDriver());
 
 			act.contextClick(element).build().perform();
 
@@ -204,7 +204,7 @@ public class GenericLib extends Browsers {
 
 			log.info("doubleClick on" + message);
 
-			Actions act = new Actions(DRIVER);
+			Actions act = new Actions(BaseClass.getDriver());
 
 			act.doubleClick(element).build().perform();
 
@@ -219,7 +219,7 @@ public class GenericLib extends Browsers {
 
 			log.info("drag and drop file" + message);
 
-			Actions act = new Actions(DRIVER);
+			Actions act = new Actions(BaseClass.getDriver());
 
 			act.dragAndDrop(source, target).build().perform();
 
@@ -234,7 +234,7 @@ public class GenericLib extends Browsers {
 
 			log.info("Click and hold" + message);
 
-			Actions act = new Actions(DRIVER);
+			Actions act = new Actions(BaseClass.getDriver());
 
 			act.clickAndHold(element).build().perform();
 
@@ -249,7 +249,7 @@ public class GenericLib extends Browsers {
 
 			log.info("Performing" + message);
 
-			Actions act = new Actions(DRIVER);
+			Actions act = new Actions(BaseClass.getDriver());
 
 			act.sendKeys(Keys.ENTER).build().perform();
 
@@ -262,7 +262,7 @@ public class GenericLib extends Browsers {
 	public static void acceptAlert(String message) {
 		try {
 			log.info("Accept" + message);
-			Alert alt = DRIVER.switchTo().alert();
+			Alert alt = BaseClass.getDriver().switchTo().alert();
 			alt.accept();
 		} catch (Exception e) {
 			log.info(e.getMessage());
@@ -273,7 +273,7 @@ public class GenericLib extends Browsers {
 	public static void dismissAlert(String message) {
 		try {
 			log.info("Dismiss" + message);
-			Alert alt = DRIVER.switchTo().alert();
+			Alert alt = BaseClass.getDriver().switchTo().alert();
 			alt.dismiss();
 		} catch (Exception e) {
 			log.info(e.getMessage());

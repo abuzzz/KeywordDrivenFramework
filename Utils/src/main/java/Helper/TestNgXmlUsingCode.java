@@ -27,7 +27,7 @@ public class TestNgXmlUsingCode{
         XmlTest test = new XmlTest(suite);
         test.setName("ProgramTest");
  
-        XmlClass class1 = new XmlClass("Test_custTestNG");
+        XmlClass class1 = new XmlClass("Helper.Test_custTestNG");
         classes.add(class1);
  
        /* XmlClass clss2 = new XmlClass("SampleProgramTwo");
