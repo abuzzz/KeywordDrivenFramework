@@ -7,12 +7,21 @@ import java.awt.event.KeyEvent;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RobotLib.
+ */
 public class RobotLib {
 
+	/** The log. */
 	static Logger log = LogManager.getLogger(RobotLib.class);
 
+	/** The robot. */
 	static Robot robot;
 
+	/**
+	 * Handle popup.
+	 */
 	public static void handlePopup() {
 		try {
 			// Initialize.
@@ -26,6 +35,9 @@ public class RobotLib {
 		log.info("pop up is handled ");
 	}
 
+	/**
+	 * File download.
+	 */
 	public static void fileDownload() {
 
 		try {

@@ -47,6 +47,25 @@ public class baseClass {
 	public static void close() {
 		driver.close();
 	}
+	public static void quit(){
+		driver.quit();
+	}
+	
+	public static void refresh(){
+		driver.navigate().refresh();
+	}
+	
+	public static void navigateBack(){
+		driver.navigate().back();
+	}
+	
+	public static void navigateForward(){
+		driver.navigate().forward();
+	}
+	
+	public static void navigateTo(String url){
+		driver.navigate().to(url);;
+	}
 
 	private static WebDriver initChromeDriver(String appURL) {
 		System.out.println("Launching google chrome with new profile..");

@@ -13,7 +13,14 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GenericLib extends baseClass {
-
+	
+	/** Method performing action or select operation.
+	 * @author shasan
+	 * @param element
+	 * @param value
+	 * @param message
+	 */
+	
 	static Actions actions = new Actions(getDriver());
 	
 	public static void clickOnElement(WebElement element, String message){
