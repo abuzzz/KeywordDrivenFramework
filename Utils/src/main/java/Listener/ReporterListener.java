@@ -2,7 +2,6 @@ package Listener;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -59,8 +58,10 @@ public class ReporterListener extends baseClass implements IReporter {
 						String class_name = result.getMethod().getTestClass().getName() ;
 				test = extent.startTest(result.getMethod().getMethodName());
 				
-				for(String details : listen_map.get(class_name.substring(class_name.lastIndexOf(".")+1,class_name.length()) + method_name))
+				if (listen_map.containsKey(class_name.substring(class_name.lastIndexOf(".")+1,class_name.length()) + method_name))
+				{for(String details : listen_map.get(class_name.substring(class_name.lastIndexOf(".")+1,class_name.length()) + method_name))
 				test.log(LogStatus.PASS, details);
+				}
 			
 				test.setStartedTime(getTime(result.getStartMillis()));
 				test.setEndedTime(getTime(result.getEndMillis()));
