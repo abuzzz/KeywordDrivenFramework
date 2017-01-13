@@ -1,104 +1,69 @@
 package selenium_utls;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.LinkedList;
 
-import org.apache.bcel.util.ClassPath.ClassFile;
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.jsoup.Connection.Method;
-
-import com.xavient.scripts.Login;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class ReportLog.
  */
-public class ReportLog {
+public class ReportLog extends baseClass {
 
-	/** The log. */
-	static Logger log;
+	// Enum for different log status.
+	public enum log {
+		INFO, DEBUG, ERROR, FATAL
+	};
 
-	/** The array. */
-	static ArrayList<String> array = new ArrayList<String>();
-
+	// Initalizing Objects.
+	Logger logger;
+	String map_key = "";
 	/**
-	 * Log info message.
-	 *
-	 * @param message the message
-	 * @param className the class name
+	 * Constructor for initializing log object.
+	 * @param map_key, This is Name of Class.
 	 */
-	public static void LogInfoMessage(String message, String className) {
-		log = LogManager.getLogger(className);
-		log.info(message);
-		array.add(message);
-		for (String data : array) {
-			System.out.println(data);
-		}
+	public ReportLog(String class_name) {
+		map_key = class_name;
+		logger = Logger.getLogger(class_name);
 
 	}
 
 	/**
-	 * Log error message.
-	 *
-	 * @param message the message
-	 * @param className the class name
+	 * Method for printing logs in console , file and Report.
+	 * 
+	 * @param status
+	 *            , Type of Log.
+	 * @param message
+	 *            , Message to print.
+	 * @param methods_name
+	 *            , Name of Method.
 	 */
-	public void LogErrorMessage(String message, String className) {
-		log = LogManager.getLogger(className);
-		log.error(message);
-		array.add(message);
-		for (String data : array) {
-			System.out.println(data);
-		}
+	public void LOG(log status, String message, String methods_name) {
+		// Adding Values to Map for Listener to read.
+		if (!listen_map.containsKey(map_key + methods_name))
+			listen_map.put(map_key + methods_name, new LinkedList<String>());
 
-	}
+		listen_map.get(map_key + methods_name).add(message);
+		// Printing Logs in file and console.
+		switch (status) {
+		case INFO:
+			logger.info(message);
+			break;
 
-	/**
-	 * Logfatal message.
-	 *
-	 * @param message the message
-	 * @param className the class name
-	 */
-	public void LogfatalMessage(String message, String className) {
-		log = LogManager.getLogger(className);
-		log.fatal(message);
-		array.add(message);
-		for (String data : array) {
-			System.out.println(data);
-		}
-	}
+		case DEBUG:
+			logger.debug(message);
+			break;
 
-	/**
-	 * Log warn message.
-	 *
-	 * @param message the message
-	 * @param className the class name
-	 */
-	public void LogWarnMessage(String message, String className) {
+		case ERROR:
+			logger.error(message);
+			break;
 
-		log = LogManager.getLogger(className);
-		log.warn(message);
-		array.add(message);
-		for (String data : array) {
-			System.out.println(data);
+		case FATAL:
+			logger.fatal(message);
+			break;
+
+		default:
+			logger.error("NOT A VALID TYPE");
 		}
 	}
-
-	/**
-	 * Log debug message.
-	 *
-	 * @param message the message
-	 * @param className the class name
-	 */
-	public void LogDebugMessage(String message, String className) {
-
-		log = LogManager.getLogger(className);
-		log.debug(message);
-		array.add(message);
-		for (String data : array) {
-			System.out.println(data);
-		}
-	}
-
 }

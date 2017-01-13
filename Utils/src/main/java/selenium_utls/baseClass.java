@@ -1,4 +1,7 @@
 package selenium_utls;
+import java.util.HashMap;
+import java.util.LinkedList;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -7,10 +10,10 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import selenium_utls.PropertiesReader;
-
 public class baseClass {
 
+	/** The array. */
+	public static HashMap<String,LinkedList<String>> listen_map = new HashMap<String,LinkedList<String>>();
 	private static WebDriver driver;
 /**
  * Method is selecting browsers.
