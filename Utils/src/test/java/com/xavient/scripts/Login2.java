@@ -18,8 +18,8 @@ public class Login2 extends baseClass {
 	public void LoginToApplicationTest11() {
 		String Username = ExcelLib.getData("Sheet1", 1, 0);
 
-		reportLog.LOG(log.INFO, "TEST" , new Object(){}.getClass().getEnclosingMethod().getName());
-		reportLog.LOG(log.INFO, "TEST" , new Object(){}.getClass().getEnclosingMethod().getName());
+		reportLog.LOG(log.INFO, "Login to App" , new Object(){}.getClass().getEnclosingMethod().getName());
+		reportLog.LOG(log.INFO, "Validation test" , new Object(){}.getClass().getEnclosingMethod().getName());
 		/*getBrowser("firefox", "https://www.hallwaze.com/");
 
 		GenericLib.clickOnElement(Elements.getWebElementByXpath(Xpaths.signin), "Element got clicked");*/
@@ -31,7 +31,7 @@ public class Login2 extends baseClass {
 	public void LoginToApplicationTest21() {
 		String Username = ExcelLib.getData("Sheet1", 1, 0);
 
-		reportLog.LOG(log.INFO, "TEST" , new Object(){}.getClass().getEnclosingMethod().getName());
+		reportLog.LOG(log.INFO, "Logout App.." , new Object(){}.getClass().getEnclosingMethod().getName());
 
 		/*getBrowser("firefox", "https://www.hallwaze.com/");
 

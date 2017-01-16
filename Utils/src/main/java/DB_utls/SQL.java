@@ -2,6 +2,7 @@ package DB_utls;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -12,10 +13,9 @@ import selenium_utls.PropertiesReader;
  */
 public class SQL {
 
-	static final String DB_URL = PropertiesReader.readProperty("dburl");
-	static final String JDBC_DRIVER = PropertiesReader.readProperty("dbdriver");
-	static final String DB_USERNAME = PropertiesReader.readProperty("dbusername");
-	static final String DB_PASSWORD = PropertiesReader.readProperty("dbpassword");
+	String dbUrl = PropertiesReader.readProperty("dburl");
+	String dbUsername = PropertiesReader.readProperty("dbusername");
+	String dbPassword = PropertiesReader.readProperty("dbpassword");
 	
 	static Connection con = null;
 	static Statement stmt = null;
@@ -25,20 +25,62 @@ public class SQL {
 	 *
 	 * @return the connection
 	 */
-	public static void getConnection(){
+	
+	public SQL(String dbtype){
+				
+		String selectdb = dbtype.toUpperCase();
+		switch(selectdb){
 		
-		try {
-			Class.forName(JDBC_DRIVER);
-			con = DriverManager.getConnection(DB_URL);
-			stmt = con.createStatement();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		case "MYSQL":
+			System.out.println("creating mysql connection");
+			try {
+				Class.forName(PropertiesReader.readProperty("mysqldriver"));
+				con = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
+				stmt = con.createStatement();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+			
+		case "ORACLE":
+			System.out.println("creating oracle connection");
+			try {
+				Class.forName(PropertiesReader.readProperty("oracledriver"));
+				con = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
+				stmt = con.createStatement();
+				
+			} catch (ClassNotFoundException cnfe) {
+				// TODO Auto-generated catch block
+				cnfe.printStackTrace();
+			} catch (SQLException sqle) {
+				sqle.printStackTrace();
+			}
+			break;
+			
+		case "POSTGRE":
+			System.out.println("creating postgre connection");
+			try {
+				Class.forName(PropertiesReader.readProperty("postgredriver"));
+				con = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
+				stmt = con.createStatement();
+			} catch (ClassNotFoundException cnfe) {
+				// TODO Auto-generated catch block
+				cnfe.printStackTrace();
+			} catch (SQLException sqle) {
+				sqle.printStackTrace();
+			}
+			break;
+		default:
+			System.out.println("Connection available only for "
+					+ " MYSQL "
+					+ " ORACLE "
+					+ " POSTGRE");
 		}
-		//stmt = con.createStatement();	 
+		
 	}
 	
 	/**
@@ -46,19 +88,19 @@ public class SQL {
 	 *
 	 * @param query the query
 	 */
-	public static void executeQuery(String query){
+	public void executeQuery(String query){
 		
+		System.out.println(query);
 		try {
 			
-			stmt.executeQuery(query);
+			ResultSet rs=stmt.executeQuery(query);  
+			while(rs.next())  
+			System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
 		} catch (SQLException e) {
 		
 			e.printStackTrace();
 		}
-		
+	
 	}
-	
-	
-
 	
 }
