@@ -4,19 +4,19 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
  
 public class Test_custTestNG {
-    @Test
+    @Test(groups="Group1")
     public void testOne() {
         Assert.assertTrue(true);
         System.out.println("Pass Test case - testOne");
     }
  
-    @Test
+    @Test(groups="Group1")
     public void testTwo() {
         Assert.assertEquals("AutomationgTesting", "AutomationgTest");
         System.out.println("Pass Test case - testOne");
     }
  
-    @Test
+    @Test(groups="Test2")
     public void testThree() {
         Assert.assertTrue(true);
         System.out.println("Pass Test case - testThree");
