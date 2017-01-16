@@ -9,13 +9,15 @@ public class ListenerTest implements ITestListener {
 	@Override
 	public void onFinish(ITestContext arg0) {
 		// TODO Auto-generated method stub
+		System.out.println("hiiiiiiii");
 		
 	}
 
 	@Override
 	public void onStart(ITestContext arg0) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("hiiiiiiii");
+
 	}
 
 	@Override
