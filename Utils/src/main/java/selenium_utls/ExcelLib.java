@@ -12,14 +12,15 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ExcelLib {
 
-	static String filePath = System.getProperty(("user.dir") + "\\Resources\\TestData.xls");
-/**
- * 
- * @param sheetName
- * @param rowNum
- * @param cellNum
- * @return
- */
+	static String filePath = System.getProperty("user.dir") + PropertiesReader.readProperty("XLS_file");
+
+	/**
+	 * 
+	 * @param sheetName
+	 * @param rowNum
+	 * @param cellNum
+	 * @return
+	 */
 	public static String getData(String sheetName, int rowNum, int cellNum) {
 
 		FileInputStream fileInput = null;

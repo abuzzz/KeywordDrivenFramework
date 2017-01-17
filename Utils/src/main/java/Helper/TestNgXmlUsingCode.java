@@ -14,7 +14,6 @@ import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
 
 /*
-
 */
 
 public class TestNgXmlUsingCode{
