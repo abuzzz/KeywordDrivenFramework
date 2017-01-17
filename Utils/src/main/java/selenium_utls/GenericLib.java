@@ -16,7 +16,7 @@ public class GenericLib extends BaseClass {
 
 	static Logger log = LogManager.getLogger(GenericLib.class);
 
-	// To Click on Any WebElement
+	// To Click on Any WebElements
 	public static void clickOnElement(WebElement element, String message) {
 
 		try {
