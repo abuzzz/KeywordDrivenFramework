@@ -27,7 +27,7 @@ public void testNgXmlSuite() {
        //List<XmlGroups>  groupee = new ArrayList<XmlGroups>();
        List<Class<? extends ITestNGListener>> clsListener = new ArrayList<>();
        List<String>ingrp = new ArrayList<String>();
-       List<XmlPackage> pkg = new ArrayList<XmlPackage>();
+       List<? extends XmlPackage> pkg = new ArrayList<>();
 
        XmlSuite suite = new XmlSuite();
        suite.setName("ProgramSuite");
@@ -36,12 +36,12 @@ public void testNgXmlSuite() {
        test.setName("ProgramTest");
        
        //XmlGroups group1 = new XmlGroups();.
-       ingrp.add("Group1");
+       ingrp.add("Group1");	
        test.addMetaGroup("Integration", ingrp);
        test.addIncludedGroup("Group1");
        
-       pkg.add("com.xavient.scripts");
-       test.setPackages(pkg);
+     /*  pkg.add("com.xavient.scripts");
+       test.setPackages(sspkg);*/
        
       
 
