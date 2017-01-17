@@ -9,6 +9,7 @@ import org.testng.ITestNGListener;
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlGroups;
+import org.testng.xml.XmlPackage;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
 
@@ -24,8 +25,9 @@ public void testNgXmlSuite() {
        List<XmlClass> classes = new ArrayList<XmlClass>();
        List<Class> listenerClasses = new ArrayList<Class>();
        //List<XmlGroups>  groupee = new ArrayList<XmlGroups>();
-       List<Class<? extends ITestNGListener>> clssListener = new ArrayList<>();
+       List<Class<? extends ITestNGListener>> clsListener = new ArrayList<>();
        List<String>ingrp = new ArrayList<String>();
+       List<XmlPackage> pkg = new ArrayList<XmlPackage>();
 
        XmlSuite suite = new XmlSuite();
        suite.setName("ProgramSuite");
@@ -38,16 +40,22 @@ public void testNgXmlSuite() {
        test.addMetaGroup("Integration", ingrp);
        test.addIncludedGroup("Group1");
        
+       pkg.add("com.xavient.scripts");
+       test.setPackages(pkg);
        
       
 
-       XmlClass class1 = new XmlClass("Helper.Test_custTestNG");
+		XmlClass class1 = new XmlClass("Helper.FactoryMethod");
+		
        classes.add(class1);
+       
+       
+       
 
-      /* XmlClass clss2 = new XmlClass("SampleProgramTwo");
+    /*  XmlClass clss2 = new 
        classes.add(clss2);*/
 
-       listenerClasses.add(ListenerTest.class);
+       clsListener.add(ListenerTest.class);
 
        test.setXmlClasses(classes);
        suites.add(suite);
@@ -55,7 +63,7 @@ public void testNgXmlSuite() {
        TestNG tng = new TestNG();
 
        tng.setXmlSuites(suites);
-       //tng.setListenerClasses(listenerClasses);
+       tng.setListenerClasses(clsListener);
        tng.run();
    }
 
