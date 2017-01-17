@@ -9,14 +9,14 @@ public class ListenerTest implements ITestListener {
 	@Override
 	public void onFinish(ITestContext arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("hiiiiiiii");
+		System.out.println("Test Finish");
 		
 	}
 
 	@Override
 	public void onStart(ITestContext arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("hiiiiiiii");
+		System.out.println("Test start");
 
 	}
 
@@ -27,8 +27,9 @@ public class ListenerTest implements ITestListener {
 	}
 
 	@Override
-	public void onTestFailure(ITestResult arg0) {
+	public void onTestFailure(ITestResult result) {
 		// TODO Auto-generated method stub
+		System.out.println(result.getName()+" "+result.getThrowable());
 		
 	}
 
@@ -45,8 +46,10 @@ public class ListenerTest implements ITestListener {
 	}
 
 	@Override
-	public void onTestSuccess(ITestResult arg0) {
+	public void onTestSuccess(ITestResult result) {
 		// TODO Auto-generated method stub
+		System.out.println(result.getName()+" "+result.getStatus());
+		
 		
 	}
 
