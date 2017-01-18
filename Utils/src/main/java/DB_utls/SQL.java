@@ -1,10 +1,13 @@
 package DB_utls;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 import selenium_utls.PropertiesReader;
 
@@ -89,9 +92,10 @@ public class SQL {
 	 * @param query the query
 	 * @param val the val
 	 */
-public void selectQuery(String query, Object [] val){
+public ResultSet selectQuery(String query, Object [] val){
 		
 		System.out.println();
+		ResultSet rs = null;
 		try {
 			//String query = "select * from ACD where ACD_ID < ?";
 			pstmt = con.prepareStatement(query);
@@ -100,22 +104,47 @@ public void selectQuery(String query, Object [] val){
 				if(val[i] instanceof Integer)
 				{
 					pstmt.setInt(i+1, (int) val[i]);
-				}
-				if(val[i] instanceof String)
-				{
+					
+				} else if(val[i] instanceof String)	{
+					
 					pstmt.setString(i+1, (String) val[i]);
+					
+				} else if(val[i] instanceof Long ){
+					
+					pstmt.setLong(i+1, (Long) val[i]);
+					
+				} else if(val[i] instanceof Double) {
+					
+					pstmt.setDouble(i+1, (Double) val[i]);
+					
+				} else if(val[i] instanceof Float) {
+					
+					pstmt.setDouble(i+1, (Float) val[i]);
+					
+				} else if(val[i] instanceof Date) {
+					
+					pstmt.setDate(i+1, (Date) val[i]);
+					
+				} else if(val[i] instanceof Time) {
+					
+					pstmt.setTime(i+1, (Time) val[i]);
+					
+				} else if(val[i] instanceof Timestamp) {
+					
+					pstmt.setTimestamp(i+1, (Timestamp) val[i]);
+					
 				}
 					
 			}
-			//pstmt.setString(2, "ACD1");
-			ResultSet rs=pstmt.executeQuery();  
-			while(rs.next())  
-			System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
+			
+			rs=pstmt.executeQuery();  
+			
 		} catch (SQLException e) {
 		
 			System.out.println(e);
 		}
-			
+		
+		return rs;	
 	}
 	
 }
