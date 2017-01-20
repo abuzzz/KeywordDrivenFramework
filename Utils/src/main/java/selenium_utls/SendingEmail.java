@@ -26,7 +26,7 @@ public class SendingEmail {
 		String[] cc = {};
 		String[] bcc = {};
 
-		SendingEmail.sendMail("cpanigrahi@xavient.com", "xavient@55", "smtp.outlook.com", "465", "true", "true", true,
+		SendingEmail.sendMail("cpanigrahi@xavient.com", "xavient@55", "smtp.gmail.com", "465", "true", "true", true,
 				"javax.net.ssl.SSLSocketFactory", "false", to, cc, bcc, "testReports",
 				"Please find the reports attached", path, "emailReports");
 
