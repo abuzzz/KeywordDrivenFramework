@@ -54,12 +54,12 @@ public class Customise_TestNG {
         return classez;
     }
 
-    private XmlPackage getXmlPackagesss(){
+    /*private XmlPackage getXmlPackagesss(){
     	XmlPackage pkg = new XmlPackage();
     	pkg.setName("com.xavient.scripts");
     	pkg.getInclude();
     	return pkg;
-    }
+    }*/
     private void getXmlPackagess(){
     	XmlPackage pkg = new XmlPackage("Helper");
     	List<XmlPackage>pkgs = new ArrayList<XmlPackage>();
