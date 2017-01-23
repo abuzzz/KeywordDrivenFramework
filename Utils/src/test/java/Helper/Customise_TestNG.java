@@ -60,17 +60,17 @@ public class Customise_TestNG {
     	pkg.getInclude();
     	return pkg;
     }
-    private List<XmlPackage> getXmlPackagess(){
+    private void getXmlPackagess(){
     	XmlPackage pkg = new XmlPackage("Helper");
     	List<XmlPackage>pkgs = new ArrayList<XmlPackage>();
     	pkgs.add(pkg);
-    	return pkgs;
+    	
     }
     //Method to return total number  of classes in a package
     
     private List<XmlClass> getClassesForPackages (List<XmlPackage>pk){
     	 List<XmlClass> cls = null;
-    	pk = getXmlPackagess();
+    	pk = new ArrayList<XmlPackage>();
     	for(XmlPackage pack : pk){
     		cls=pack.getXmlClasses();
     	    	}
