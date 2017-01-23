@@ -1,10 +1,13 @@
 package DB_utls;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 import selenium_utls.PropertiesReader;
 
@@ -18,7 +21,7 @@ public class SQL {
 	String dbPassword = PropertiesReader.readProperty("dbpassword");
 	
 	static Connection con = null;
-	static Statement stmt = null;
+	static PreparedStatement pstmt = null;
 	
 	/**
 	 * Gets the connection.
@@ -34,9 +37,9 @@ public class SQL {
 		case "MYSQL":
 			System.out.println("creating mysql connection");
 			try {
-				Class.forName(PropertiesReader.readProperty("mysqldriver"));
+				Class.forName("com.mysql.jdbc.Driver");
 				con = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
-				stmt = con.createStatement();
+				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -49,9 +52,9 @@ public class SQL {
 		case "ORACLE":
 			System.out.println("creating oracle connection");
 			try {
-				Class.forName(PropertiesReader.readProperty("oracledriver"));
+				Class.forName("oracle.jdbc.driver.OracleDriver");
 				con = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
-				stmt = con.createStatement();
+				
 				
 			} catch (ClassNotFoundException cnfe) {
 				// TODO Auto-generated catch block
@@ -64,9 +67,9 @@ public class SQL {
 		case "POSTGRE":
 			System.out.println("creating postgre connection");
 			try {
-				Class.forName(PropertiesReader.readProperty("postgredriver"));
+				Class.forName("org.postgresql.Driver");
 				con = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
-				stmt = con.createStatement();
+				
 			} catch (ClassNotFoundException cnfe) {
 				// TODO Auto-generated catch block
 				cnfe.printStackTrace();
@@ -87,20 +90,61 @@ public class SQL {
 	 * Execute query.
 	 *
 	 * @param query the query
+	 * @param val the val
 	 */
-	public void executeQuery(String query){
+public ResultSet selectQuery(String query, Object [] val){
 		
-		System.out.println(query);
+		System.out.println();
+		ResultSet rs = null;
 		try {
+			//String query = "select * from ACD where ACD_ID < ?";
+			pstmt = con.prepareStatement(query);
+			for(int i=0;i<val.length;i++)
+			{
+				if(val[i] instanceof Integer)
+				{
+					pstmt.setInt(i+1, (int) val[i]);
+					
+				} else if(val[i] instanceof String)	{
+					
+					pstmt.setString(i+1, (String) val[i]);
+					
+				} else if(val[i] instanceof Long ){
+					
+					pstmt.setLong(i+1, (Long) val[i]);
+					
+				} else if(val[i] instanceof Double) {
+					
+					pstmt.setDouble(i+1, (Double) val[i]);
+					
+				} else if(val[i] instanceof Float) {
+					
+					pstmt.setDouble(i+1, (Float) val[i]);
+					
+				} else if(val[i] instanceof Date) {
+					
+					pstmt.setDate(i+1, (Date) val[i]);
+					
+				} else if(val[i] instanceof Time) {
+					
+					pstmt.setTime(i+1, (Time) val[i]);
+					
+				} else if(val[i] instanceof Timestamp) {
+					
+					pstmt.setTimestamp(i+1, (Timestamp) val[i]);
+					
+				}
+					
+			}
 			
-			ResultSet rs=stmt.executeQuery(query);  
-			while(rs.next())  
-			System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
+			rs=pstmt.executeQuery();  
+			
 		} catch (SQLException e) {
 		
-			e.printStackTrace();
+			System.out.println(e);
 		}
-	
+		
+		return rs;	
 	}
 	
 }
