@@ -26,6 +26,7 @@ public class Customise_TestNG {
         test.setXmlClasses(classes);
         List<XmlTest> tests = new ArrayList<XmlTest>();
         tests.add(test);
+        
         suite.setTests(tests);
         List<XmlSuite> suites = new ArrayList<XmlSuite>();
         suites.add(suite);
