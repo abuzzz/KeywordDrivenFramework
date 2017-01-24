@@ -12,7 +12,7 @@ import selenium_utls.ReportLog.log;
 @Listeners(Listener.ReporterListener.class)
 public class Login2 extends baseClass {
 	ReportLog  reportLog = new ReportLog(this.getClass().getSimpleName());	
-	Logger logger = Logger.getLogger(Login.class);
+	Logger logger = Logger.getLogger(Login2.class);
 
 	@Test
 	public void LoginToApplicationTest11() {

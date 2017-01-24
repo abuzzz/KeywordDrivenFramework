@@ -16,9 +16,9 @@ import selenium_utls.PropertiesReader;
  */
 public class SQL {
 
-	String dbUrl = PropertiesReader.readProperty("dburl");
-	String dbUsername = PropertiesReader.readProperty("dbusername");
-	String dbPassword = PropertiesReader.readProperty("dbpassword");
+	static String dbUrl = PropertiesReader.readProperty("dburl");
+	static String dbUsername = PropertiesReader.readProperty("dbusername");
+	static String dbPassword = PropertiesReader.readProperty("dbpassword");
 	
 	static Connection con = null;
 	static PreparedStatement pstmt = null;
@@ -29,9 +29,9 @@ public class SQL {
 	 * @return the connection
 	 */
 	
-	public SQL(String dbtype){
+	static {
 				
-		String selectdb = dbtype.toUpperCase();
+		String selectdb = PropertiesReader.readProperty("dbtype").toUpperCase();
 		switch(selectdb){
 		
 		case "MYSQL":

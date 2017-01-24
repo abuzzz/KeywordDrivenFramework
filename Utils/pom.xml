@@ -76,6 +76,20 @@
 			<artifactId>javax.mail</artifactId>
 			<version>1.5.5</version>
 		</dependency>
+		
+		<!--MySql JDBC Driver -->
+		<dependency>
+    		<groupId>mysql</groupId>
+    		<artifactId>mysql-connector-java</artifactId>
+  			<version>5.1.39</version>
+		</dependency>
+		
+		<!-- Postgresql Driver -->
+		<dependency>
+    		<groupId>org.postgresql</groupId>
+    		<artifactId>postgresql</artifactId>
+   			<version>9.4.1212</version>
+		</dependency>
 
 
 	</dependencies>
