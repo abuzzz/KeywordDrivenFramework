@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -93,7 +94,7 @@ public static String filename = System.getProperty("user.dir")+PropertiesReader.
 			if(cell.getCellType()==Cell.CELL_TYPE_STRING)
 				return cell.getStringCellValue();
 			else if(cell.getCellType()==Cell.CELL_TYPE_NUMERIC || cell.getCellType()==Cell.CELL_TYPE_FORMULA){
-				String cellText = String.valueOf(cell.getNumericCellValue());
+				String cellText  = new DataFormatter().formatCellValue(cell);
 				return cellText;
 			}else if(cell.getCellType()==Cell.CELL_TYPE_BLANK)
 				return "";
@@ -106,6 +107,45 @@ public static String filename = System.getProperty("user.dir")+PropertiesReader.
 		}
 		
 	}
+	
+	//Return data from cell
+		public String getCellData(String sheetName,int colNum,int rowNum){
+	        try{
+	            if(rowNum <=0)
+	                return "";
+
+	            int index = workbook.getSheetIndex(sheetName);
+
+	            if(index==-1)
+	                return "";
+
+
+	            sheet = workbook.getSheetAt(index);
+	            row = sheet.getRow(rowNum);
+	            if(row==null)
+	                return "";
+	            cell = row.getCell(colNum);
+	            if(cell==null)
+	                return "";
+
+	            if(cell.getCellType()==Cell.CELL_TYPE_STRING)
+	                return cell.getStringCellValue();
+	            else if(cell.getCellType()==Cell.CELL_TYPE_NUMERIC || cell.getCellType()==Cell.CELL_TYPE_FORMULA ){
+	            	
+	            	String cellText  = new DataFormatter().formatCellValue(cell);
+	                return cellText;
+	                
+	            }else if(cell.getCellType()==Cell.CELL_TYPE_BLANK)
+	                return "";
+	            else
+	                return String.valueOf(cell.getBooleanCellValue());
+	        }
+	        catch(Exception e){
+
+	            e.printStackTrace();
+	            return "row "+rowNum+" or column "+colNum +" does not exist  in xls";
+	        }
+	    }
 
 
 }
