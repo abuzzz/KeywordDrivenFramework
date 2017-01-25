@@ -21,12 +21,13 @@ public class SendingEmail {
 	{
 		String path = "E:\\Utils_Repo\\Utils\\Reports\\Report.html";
 
-		String[] to = { "shasan@xavient.com" };
+		String[] to = { "gvihar@xavient.com" };
 
 		String[] cc = {};
 		String[] bcc = {};
 
-		SendingEmail.sendMail("cpanigrahi@xavient.com", "xavient@55", "smtp.gmail.com", "465", "true", "true", true,
+		SendingEmail.sendMail(PropertiesReader.readProperty("userMailID"),
+				PropertiesReader.readProperty("userPassword"), "mail.xavient.com", "25", "true", "true", true,
 				"javax.net.ssl.SSLSocketFactory", "false", to, cc, bcc, "testReports",
 				"Please find the reports attached", path, "emailReports");
 
@@ -69,10 +70,6 @@ public class SendingEmail {
 
 			props.put("mail.smtp.socketFactory.port", port);
 
-		if (!"".equals(socketFactoryClass))
-
-			props.put("mail.smtp.socketFactory.class", socketFactoryClass);
-
 		if (!"".equals(fallback))
 
 			props.put("mail.smtp.socketFactory.fallback", fallback);
@@ -99,7 +96,7 @@ public class SendingEmail {
 			multipart.addBodyPart(messageBodyPart);
 
 			msg.setContent(multipart);
-			msg.setFrom(new InternetAddress("shasan@xavient.com"));
+			msg.setFrom(new InternetAddress(PropertiesReader.readProperty("userMailID")));
 
 			for (int i = 0; i < to.length; i++) {
 
