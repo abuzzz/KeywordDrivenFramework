@@ -54,7 +54,7 @@ public class SendingEmail {
 			props.put("mail.smtp.starttls.enable", starttls);
 
 		props.put("mail.smtp.auth", auth);
-		// props.put("mail.smtps.auth", "true");
+		// props.put("mail.smtps.auth", "true")
 
 		if (debug) {
 
