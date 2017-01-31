@@ -90,7 +90,12 @@
     		<artifactId>postgresql</artifactId>
    			<version>9.4.1212</version>
 		</dependency>
-
+<!-- https://mvnrepository.com/artifact/net.avh4.util/imagecomparison -->
+<dependency>
+    <groupId>net.avh4.util</groupId>
+    <artifactId>imagecomparison</artifactId>
+    <version>0.3.2</version>
+</dependency>
 
 	</dependencies>
 </project>

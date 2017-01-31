@@ -2,7 +2,6 @@ package grid;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
@@ -17,7 +16,7 @@ public class Base_Grid {
 	
 	@BeforeClass
 	public void setUp() throws MalformedURLException {
-		System.setProperty("webdriver.gecko.driver", "d:\\s.w\\firefox-sdk\\bin\\firefox.exe");
+		System.setProperty("webdriver.gecko.driver", "d:\\s.w\\geckodriver.exe");
 		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 		driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
 		driver.manage().window().maximize();
@@ -38,7 +37,4 @@ public class Base_Grid {
 			driver.quit();
 		}
 	}
-	
 	}
-
-
