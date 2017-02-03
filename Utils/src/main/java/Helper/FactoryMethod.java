@@ -1,11 +1,10 @@
-package Helper;
+/*package Helper;
 
 
 
 import org.testng.annotations.Factory;
 
-import com.xavient.scripts.NewTest;
-import com.xavient.scripts.Test_custTestNG;
+import com.xavient.scripts.*;
 
 public class FactoryMethod {
 
@@ -20,3 +19,4 @@ public class FactoryMethod {
 				
 	}
 }
+*/

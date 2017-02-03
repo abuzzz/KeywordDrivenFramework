@@ -9,19 +9,22 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import Helper.PropertiesReader;
 
 public class baseClass {
 
 	/** The array. */
 	public static HashMap<String,LinkedList<String>> listen_map = new HashMap<String,LinkedList<String>>();
 	private static WebDriver driver;
+	public static  DesiredCapabilities capabilities;
+
 /**
  * Method is selecting browsers.
  * @param browser
  * @param url
  */
 	public static void getBrowser(String browser, String url) {
-		switch (browser) {
+		switch (browser){
 		case "chrome":
 			driver = initChromeDriver(url);
 			break;
@@ -38,10 +41,14 @@ public class baseClass {
 		}
 
 	}
+	
+	
 
 	public static WebDriver getDriver() {
 		return baseClass.driver;
 	}
+	
+	
 
 	public static void open(String url) {
 		driver.get(url);
@@ -72,7 +79,7 @@ public class baseClass {
 
 	private static WebDriver initChromeDriver(String appURL) {
 		System.out.println("Launching google chrome with new profile..");
-		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+		 capabilities = DesiredCapabilities.chrome();
 		capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 		System.setProperty("webdriver.chrome.driver",
 				PropertiesReader.readProperty("chrome_driver")
@@ -95,7 +102,7 @@ public class baseClass {
 	}
 	
 	private static WebDriver initIEDriver(String appURL) {
-		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+		 capabilities = DesiredCapabilities.chrome();
 		capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 		capabilities
 				.setCapability(

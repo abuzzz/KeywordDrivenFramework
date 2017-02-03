@@ -1,4 +1,4 @@
-
+/*
 package selenium_utls;
 
 import java.util.concurrent.TimeUnit;
@@ -15,12 +15,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GenericLib extends baseClass {
 	
-	/** Method performing action or select operation.
+	*//** Method performing action or select operation.
 	 * @author shasan
 	 * @param element
 	 * @param value
 	 * @param message
-	 */
+	 *//*
 	
 	static Actions actions = new Actions(getDriver());
 	
@@ -104,3 +104,4 @@ public class GenericLib extends baseClass {
 	}
 }
 
+*/

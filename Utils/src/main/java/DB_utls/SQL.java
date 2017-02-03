@@ -9,11 +9,9 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
 
-import selenium_utls.PropertiesReader;
+import Helper.PropertiesReader;
 
-/**
- * The Class SQL.
- */
+
 public class SQL {
 
 	static String dbUrl = PropertiesReader.readProperty("dburl");
@@ -24,11 +22,8 @@ public class SQL {
 	static PreparedStatement pstmt = null;
 	
 	/**
-	 * Gets the connection.
-	 *
-	 * @return the connection
+	 * 
 	 */
-	
 	static {
 				
 		String selectdb = PropertiesReader.readProperty("dbtype").toUpperCase();
@@ -87,10 +82,10 @@ public class SQL {
 	}
 	
 	/**
-	 * Execute query.
-	 *
-	 * @param query the query
-	 * @param val the val
+	 * 
+	 * @param query
+	 * @param val
+	 * @return
 	 */
 public ResultSet selectQuery(String query, Object [] val){
 		

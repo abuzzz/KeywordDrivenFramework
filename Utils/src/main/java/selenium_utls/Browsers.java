@@ -11,17 +11,14 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
 
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
+import Helper.PropertiesReader;
+
 
 public class Browsers {
 
 	public static WebDriver DRIVER = null;
-
+	public static DesiredCapabilities capabilities = null;
 	/**
 	 * Method is initializing driver with defined browser properties.
 	 * 
@@ -37,7 +34,7 @@ public class Browsers {
 		if (browser.equalsIgnoreCase("Firefox")) {
 
 			// Creating Firefox instance
-
+			PropertiesReader.readProperty("123");
 			FirefoxProfile profile = new FirefoxProfile();
 			profile.setAcceptUntrustedCertificates(true);
 
@@ -54,7 +51,7 @@ public class Browsers {
 
 			// Creating Chrome instance
 
-			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+			 capabilities = DesiredCapabilities.chrome();
 			capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 
 			System.setProperty("webdriver.chrome.driver", path + PropertiesReader.readProperty("chrome_driver"));
@@ -71,7 +68,7 @@ public class Browsers {
 
 			// Creating InternetExplorer instance
 
-			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+			 capabilities = DesiredCapabilities.chrome();
 			capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 			capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 			capabilities.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
