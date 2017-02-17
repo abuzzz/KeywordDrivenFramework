@@ -1,4 +1,6 @@
 package selenium_utls;
+import helper.PropertiesReader;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -9,7 +11,6 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import Helper.PropertiesReader;
 
 public class baseClass {
 
@@ -17,7 +18,7 @@ public class baseClass {
 	public static HashMap<String,LinkedList<String>> listen_map = new HashMap<String,LinkedList<String>>();
 	private static WebDriver driver;
 	public static  DesiredCapabilities capabilities;
-
+	public ReportLog reportlog;
 /**
  * Method is selecting browsers.
  * @param browser
@@ -79,6 +80,7 @@ public class baseClass {
 
 	private static WebDriver initChromeDriver(String appURL) {
 		System.out.println("Launching google chrome with new profile..");
+		
 		 capabilities = DesiredCapabilities.chrome();
 		capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 		System.setProperty("webdriver.chrome.driver",

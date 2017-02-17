@@ -1,15 +1,19 @@
 package DB_utls;
 
+import helper.PropertiesReader;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
 import java.sql.Timestamp;
 
-import Helper.PropertiesReader;
+import selenium_utls.ReportLog;
+import selenium_utls.ReportLog.log;
 
 
 public class SQL {
@@ -20,7 +24,9 @@ public class SQL {
 	
 	static Connection con = null;
 	static PreparedStatement pstmt = null;
-	
+	static Statement stmt = null;
+	static ResultSet rs = null;
+	public static ReportLog reportLog = new ReportLog("SQL");
 	/**
 	 * 
 	 */
@@ -30,7 +36,7 @@ public class SQL {
 		switch(selectdb){
 		
 		case "MYSQL":
-			System.out.println("creating mysql connection");
+			reportLog.LOG(log.INFO, "creating mysql connection", "static block");
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				con = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
@@ -45,7 +51,7 @@ public class SQL {
 			break;
 			
 		case "ORACLE":
-			System.out.println("creating oracle connection");
+			reportLog.LOG(log.INFO, "creating oracle connection", "static block");
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				con = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
@@ -60,7 +66,7 @@ public class SQL {
 			break;
 			
 		case "POSTGRE":
-			System.out.println("creating postgre connection");
+			reportLog.LOG(log.INFO, "creating postgress connection", "static block");
 			try {
 				Class.forName("org.postgresql.Driver");
 				con = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
@@ -73,10 +79,8 @@ public class SQL {
 			}
 			break;
 		default:
-			System.out.println("Connection available only for "
-					+ " MYSQL "
-					+ " ORACLE "
-					+ " POSTGRE");
+			reportLog.LOG(log.INFO, "Connection available only for  MYSQL ORACLE POSTGRESS  ", "static block");
+				
 		}
 		
 	}
@@ -87,12 +91,9 @@ public class SQL {
 	 * @param val
 	 * @return
 	 */
-public ResultSet selectQuery(String query, Object [] val){
-		
-		System.out.println();
-		ResultSet rs = null;
+public static ResultSet selectQuery(String query, Object [] val){
+		 rs = null;
 		try {
-			//String query = "select * from ACD where ACD_ID < ?";
 			pstmt = con.prepareStatement(query);
 			for(int i=0;i<val.length;i++)
 			{
@@ -136,10 +137,28 @@ public ResultSet selectQuery(String query, Object [] val){
 			
 		} catch (SQLException e) {
 		
-			System.out.println(e);
+			reportLog.LOG(log.FATAL, e.getMessage() , "static block");
 		}
 		
 		return rs;	
 	}
+
+/**
+ * 
+ * @param query
+ * @param val
+ * @return
+ */
+public static ResultSet selectQuery(String query){
+	 rs = null;
+	try {
+		stmt = con.createStatement();
+		rs=stmt.executeQuery(query);  
+		
+	} catch (SQLException e) {
 	
+		System.out.println(e);
+	}	
+	return rs;	
+}	
 }

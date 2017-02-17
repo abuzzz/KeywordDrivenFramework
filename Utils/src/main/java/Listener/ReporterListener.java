@@ -1,5 +1,7 @@
 package listener;
 
+import helper.PropertiesReader;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +17,6 @@ import org.testng.Reporter;
 import org.testng.xml.XmlSuite;
 
 import selenium_utls.baseClass;
-import Helper.PropertiesReader;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;

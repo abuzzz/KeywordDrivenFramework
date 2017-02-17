@@ -1,5 +1,7 @@
 package selenium_utls;
 
+import helper.PropertiesReader;
+
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -13,8 +15,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-
-import Helper.PropertiesReader;
 
 public class SendingEmail {
 

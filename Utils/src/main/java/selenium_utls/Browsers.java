@@ -1,5 +1,7 @@
 package selenium_utls;
 
+import helper.PropertiesReader;
+
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.LogManager;
@@ -11,8 +13,6 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
-import Helper.PropertiesReader;
 
 
 public class Browsers {
