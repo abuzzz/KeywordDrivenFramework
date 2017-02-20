@@ -15,7 +15,7 @@ import org.testng.xml.XmlInclude;
 import org.testng.xml.XmlPackage;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
-import org.verify.Verify;
+import org.verify.*;
 
 import selenium_utls.ExcelLib;
 import selenium_utls.ReportLog;
@@ -44,12 +44,13 @@ public class Customise_TestNG {
 		List<XmlTest> tests = new ArrayList<XmlTest>();
 		List<XmlSuite> suites = new ArrayList<XmlSuite>();
 		XmlSuite suite = set_suite_details();
+		//suite = addListner(suite);
 		XmlTest test = new XmlTest(suite);
 		// Set tests parameter , add class , package , methods.
 		tests = add_Test(suite, tests, test);
 		// Add suite .
 		suites.add(suite);
-
+		
 		// Running Tests.
 		TestNG testNG = new TestNG();
 		testNG.setXmlSuites(suites);
@@ -211,12 +212,24 @@ public class Customise_TestNG {
 		suite.setVerbose(2);
 		suite.setParallel("tests");
 		suite.setThreadCount(5);
+		
 		if (suite_name.equals("") || suite_name.equals(null))
 			suite.setName("Temp_Suite");
 		else
 			suite.setName(suite_name);
 
 		return suite;
+	}
+	
+	private XmlSuite addListner(XmlSuite suite) {
+		String listeners  = ExcelLib.getCellData("GenerateXMLdata", 1, 0);
+		List<String> datas = Helper.remove_comma_delimeter(listeners);
+		for (String listener : datas)
+			suite.addListener(listener);
+		return suite;
+		// TODO Auto-generated method stub
+		
+		
 	}
 
 	/**
@@ -233,10 +246,11 @@ public class Customise_TestNG {
 		return datas;
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Customise_TestNG program = new Customise_TestNG();
 		program.run();
-	}
+		
+	}*/
 
 	@Test(groups = "Group1")
 	public void testOne() {

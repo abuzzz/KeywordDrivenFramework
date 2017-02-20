@@ -1,9 +1,13 @@
 package selenium_utls;
+import helper.Customise_TestNG;
 import helper.PropertiesReader;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -11,8 +15,12 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.ISuite;
+import org.testng.ISuiteListener;
+import org.testng.annotations.BeforeSuite;
 
-public class baseClass {
+public class baseClass  {
 
 	/** The array. */
 	public static HashMap<String,LinkedList<String>> listen_map = new HashMap<String,LinkedList<String>>();
@@ -121,4 +129,16 @@ public class baseClass {
 		open(appURL);
 		return driver;
 	}
+	
+	@BeforeSuite
+	public void execute_suite()
+	{
+		Customise_TestNG program = new Customise_TestNG();
+		program.run();
+	}
+	
+	
+	
+
+
 }

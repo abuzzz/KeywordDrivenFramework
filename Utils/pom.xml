@@ -24,7 +24,21 @@
                 <encoding>UTF-8</encoding>
             </configuration>
         </plugin>
+<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.17</version>
 
+				<configuration>
+					<testFailureIgnore>true</testFailureIgnore>
+					<skipTests>false</skipTests>
+
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+
+				</configuration>
+			</plugin>
     </plugins>
 </build>
 	<dependencies>
@@ -104,7 +118,13 @@
    			<version>9.4.1212</version>
 		</dependency>
 
-         
+         <dependency>
+    <groupId>com.oracle</groupId>
+    <artifactId>ojdbc</artifactId>
+    <version>6</version>
+    <scope>system</scope>
+    <systemPath>${basedir}/ojdbc6.jar</systemPath> <!-- must match file name -->
+</dependency>
 	</dependencies>
 
 </project>

@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="TestSuite" thread-count="5"  verbose = "2" parallel="tests">
+<suite name="Suite">
 
-
-
-	<!-- <listeners>
-		<listener class-name="Listener.ReporterListener" />
-	</listeners> -->
-
-	<test name="View1">
+	<test name="Test">
 		<classes>
-			<class name="test_sql_java.testsql1"></class>
+			<class name="selenium_utls.baseClass" />
 		</classes>
-	</test>
-	
-
-</suite>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

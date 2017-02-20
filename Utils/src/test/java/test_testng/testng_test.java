@@ -1,4 +1,4 @@
-package helper;
+package test_testng;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -12,7 +12,7 @@ import org.testng.xml.XmlInclude;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
 
-public class temp_custNG {
+public class testng_test {
 
 
 
